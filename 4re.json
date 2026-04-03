@@ -1,0 +1,156 @@
+{
+    "blockly": false,
+    "blockly_xml": "<xml></xml>",
+    "category": "Uncategorized",
+    "coa": {
+        "data": {
+            "description": "",
+            "edges": [
+                {
+                    "id": "port_0_to_port_2",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "2",
+                    "targetPort": "2_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "conditionKey": "condition_key_0",
+                            "index": 0
+                        }
+                    ],
+                    "id": "port_2_to_port_4",
+                    "sourceNode": "2",
+                    "sourcePort": "2_out",
+                    "targetNode": "4",
+                    "targetPort": "4_in"
+                },
+                {
+                    "id": "port_4_to_port_1",
+                    "sourceNode": "4",
+                    "sourcePort": "4_out",
+                    "targetNode": "1",
+                    "targetPort": "1_in"
+                }
+            ],
+            "hash": "c3b3950be8645a72147ffa013facc097b1ee1390",
+            "nodes": {
+                "0": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_start",
+                        "id": "0",
+                        "type": "start"
+                    },
+                    "errors": {},
+                    "id": "0",
+                    "type": "start",
+                    "warnings": {},
+                    "x": 1000,
+                    "y": 419.9999999999999
+                },
+                "1": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_finish",
+                        "id": "1",
+                        "type": "end"
+                    },
+                    "errors": {},
+                    "id": "1",
+                    "type": "end",
+                    "warnings": {},
+                    "x": 1000,
+                    "y": 1000
+                },
+                "2": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "conditions": [
+                            {
+                                "comparisons": [
+                                    {
+                                        "comparisonKey": "comparison_key_0",
+                                        "op": "==",
+                                        "param": "artifact:*.cef.message",
+                                        "value": "splunk"
+                                    }
+                                ],
+                                "conditionIndex": 0,
+                                "conditionKey": "condition_key_0",
+                                "logic": "and",
+                                "type": "if"
+                            }
+                        ],
+                        "functionId": 1,
+                        "functionName": "decision_1",
+                        "id": "2",
+                        "type": "decision"
+                    },
+                    "errors": {},
+                    "id": "2",
+                    "type": "decision",
+                    "warnings": {},
+                    "x": 1060,
+                    "y": 620
+                },
+                "4": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "approver": {
+                            "type": "user",
+                            "value": "soar_local_admin"
+                        },
+                        "functionId": 1,
+                        "functionName": "prompt_1",
+                        "id": "4",
+                        "message": "tgfr gr\nfd ?",
+                        "parameters": [],
+                        "responseTime": 30,
+                        "responses": [
+                            {
+                                "required": true,
+                                "responseOptions": [
+                                    "Yes",
+                                    "No"
+                                ],
+                                "responsePrompt": "fr rtr ty",
+                                "responseType": "yes/no"
+                            }
+                        ],
+                        "type": "prompt"
+                    },
+                    "errors": {},
+                    "id": "4",
+                    "type": "prompt",
+                    "warnings": {},
+                    "x": 857.5,
+                    "y": 807
+                }
+            },
+            "notes": ""
+        },
+        "input_spec": null,
+        "output_spec": null,
+        "playbook_trigger": "artifact_created",
+        "playbook_type": "automation",
+        "python_version": "3.13",
+        "schema": "5.0.23",
+        "version": "7.1.0.225"
+    },
+    "create_time": "2026-04-03T06:48:15.954427+00:00",
+    "draft_mode": false,
+    "labels": [
+        "*"
+    ],
+    "tags": []
+}

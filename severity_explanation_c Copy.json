@@ -1,0 +1,95 @@
+{
+    "blockly": false,
+    "blockly_xml": "<xml></xml>",
+    "category": "Uncategorized",
+    "coa": {
+        "data": {
+            "customCode": "import phantom.rules as phantom\nimport json\nfrom datetime import datetime\n\ndef on_start(container):\n    \n    severity_explanation_c(container = container)\n    return\n\ndef severity_explanation_c(container = None, **kwargs):\n    if not container:\n        return {\"status\": \"failed\", \"message\": \"no_container_data\"}\n    \n    container_id = container.get(\"id\", \"N/A\")\n    severity = str(container.get(\"severity\", \"unknown\")).lower()\n    \n    severity_explanations = {\n    \"high\": \"\"\"RED ALERT - CRITICAL SEVERITY THREAT\n\nThis threat poses a critical risk to the organization and requires immediate response.\n\nTHREAT INDICATORS:\n\u2022 Active exploitation detected or confirmed\n\u2022 Direct impact on critical business services\n\u2022 High probability of data loss or unauthorized access\n\u2022 Multiple systems potentially compromised\n\u2022 Sensitive or proprietary data at risk\n\u2022 Potential for significant financial losses\n\u2022 Regulatory compliance violations possible\n\nRESPONSE REQUIREMENTS:\n1. Activate incident response team immediately\n2. Isolate affected systems from network\n3. Conduct deep forensic analysis\n4. Document all actions and findings\n5. Notify senior management and stakeholders\n6. Prepare for potential data breach notification\n7. Preserve evidence for legal proceedings\n\nESCALATION:\n\u2022 Immediate notification to CISO\n\u2022 Engage external incident response team if needed\n\u2022 Consider law enforcement notification\n\u2022 Prepare public communications if necessary\n\nTIME TO RESPOND: Within 15 minutes\nPRIORITY LEVEL: CRITICAL (P1)\"\"\",\n    \n    \"medium\": \"\"\"ORANGE ALERT - MEDIUM SEVERITY THREAT\n\nThis threat requires rapid investigation and may affect a limited number of systems \nor users. Response should be initiated within business hours.\n\nTHREAT INDICATORS:\n\u2022 Suspicious activity detected requiring investigation\n\u2022 Partial impact on services or limited user base\n\u2022 Potential for temporary service disruption\n\u2022 Medium impact on system performance\n\u2022 Unauthorized access attempts or modifications\n\u2022 Anomalous network or system behavior\n\u2022 Potential credential compromise\n\nRESPONSE REQUIREMENTS:\n1. Open formal investigation case in SOAR\n2. Gather and analyze relevant logs and data\n3. Verify affected accounts or systems\n4. Implement initial containment measures\n5. Interview affected users if necessary\n6. Document all investigation steps\n7. Prepare preliminary findings report\n\nINVESTIGATION STEPS:\n\u2022 Timeline reconstruction\n\u2022 Log analysis and correlation\n\u2022 System integrity verification\n\u2022 User activity review\n\u2022 Network traffic analysis\n\nTIME TO RESPOND: Within 2-4 hours\nPRIORITY LEVEL: HIGH (P2)\"\"\",\n    \n    \"low\": \"\"\"GREEN ALERT - LOW SEVERITY THREAT\n\nThis threat does not pose an immediate risk and can be addressed during standard \noperations. Monitoring and documentation are recommended.\n\nTHREAT INDICATORS:\n\u2022 Informational alerts from monitoring systems\n\u2022 Minor anomalies with negligible impact\n\u2022 Routine system activities outside normal parameters\n\u2022 Non-critical system updates or patches\n\u2022 Low-risk suspicious activity\n\u2022 Potential false positives from detection systems\n\nRESPONSE REQUIREMENTS:\n1. Log alert in tracking system\n2. Schedule for periodic review\n3. Correlate with similar alerts\n4. Analyze patterns over time\n5. Update detection rules if needed\n6. Document findings and actions\n7. Archive for future reference\n\nMONITORING ACTIONS:\n\u2022 Continue normal monitoring\n\u2022 Weekly review of similar alerts\n\u2022 Monthly trend analysis\n\u2022 Quarterly rule effectiveness review\n\nTIME TO RESPOND: Within 24-48 hours\nPRIORITY LEVEL: LOW (P3)\"\"\"\n                   }\n    # Get appropriate explanation based on severity level\n    explanation = severity_explanations.get(\n        severity, \"No specific explanation available for this severity level. Please contact the security team for clarification.\")\n    # Store results in dictionary for use in subsequent playbook actions\n    results = {\n        \"severity_level\": severity,\n        \"explanation\": explanation,\n        \"container_id\": container_id,\n        \"timestamp\": str(datetime.now()),\n        \"status\": \"explanation_generated\"\n    }\n    \n    phantom.debug(f\"Results generated: {results}\")\n    \n    return results\n\ndef on_finish(container, summary):\n    \n    return",
+            "description": "",
+            "edges": [
+                {
+                    "id": "port_0_to_port_2",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "2",
+                    "targetPort": "2_in"
+                },
+                {
+                    "id": "port_2_to_port_1",
+                    "sourceNode": "2",
+                    "sourcePort": "2_out",
+                    "targetNode": "1",
+                    "targetPort": "1_in"
+                }
+            ],
+            "hash": "7afbc586f6158a3a31c4ce83be1fd0c85f57eb1d",
+            "nodes": {
+                "0": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_start",
+                        "id": "0",
+                        "type": "start"
+                    },
+                    "errors": {},
+                    "id": "0",
+                    "type": "start",
+                    "warnings": {},
+                    "x": 1000,
+                    "y": 419.9999999999999
+                },
+                "1": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_finish",
+                        "id": "1",
+                        "type": "end"
+                    },
+                    "errors": {},
+                    "id": "1",
+                    "type": "end",
+                    "warnings": {},
+                    "x": 1000,
+                    "y": 1000
+                },
+                "2": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionId": 1,
+                        "functionName": "code_1",
+                        "id": "2",
+                        "inputParameters": [],
+                        "outputVariables": [],
+                        "type": "code"
+                    },
+                    "errors": {},
+                    "id": "2",
+                    "type": "code",
+                    "warnings": {},
+                    "x": 860,
+                    "y": 660
+                }
+            },
+            "notes": ""
+        },
+        "input_spec": null,
+        "output_spec": null,
+        "playbook_trigger": "artifact_created",
+        "playbook_type": "automation",
+        "python_version": "3.13",
+        "schema": "5.0.23",
+        "version": "7.1.0.225"
+    },
+    "create_time": "2026-04-29T14:21:23.391637+00:00",
+    "draft_mode": false,
+    "labels": [
+        "events"
+    ],
+    "tags": []
+}
